@@ -31,11 +31,10 @@ import org.hibernate.validator.constraints.Length;
  * @since 2023/06/08
  */
 @Data
-@Entity
+@Entity(name = "MEMBER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @ToString(exclude = {"memberId", "password"})
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class MemberEntity extends GlobalDeletedDatetimeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,9 +42,7 @@ public class MemberEntity extends GlobalDeletedDatetimeEntity implements Seriali
      * 회원 ID <<memberId>> UUID2
      */
     @Id
-    @GenericGenerator(name = "uuid", strategy = "uuid")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid")
-    @Type(type = "uuid-char")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "CHAR(36) COMMENT '회원 ID'", updatable = false, nullable = false, unique = true, length = 36)
     @ApiModelProperty(notes = "회원 ID")
     @Length(min = 36, max = 36)
