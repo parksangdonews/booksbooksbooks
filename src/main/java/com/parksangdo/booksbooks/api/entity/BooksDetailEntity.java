@@ -15,9 +15,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -32,7 +29,7 @@ import org.hibernate.validator.constraints.Length;
 @Data
 @Entity(name = "BOOKS_DETAIL")
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
-@ToString(exclude = "bookDetailId")
+@ToString(exclude = "booksDetailId")
 @Cacheable
 public class BooksDetailEntity extends GlobalDeletedDatetimeEntity implements Serializable {
 

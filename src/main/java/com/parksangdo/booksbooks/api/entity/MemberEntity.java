@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -47,8 +48,8 @@ public class MemberEntity extends GlobalDeletedDatetimeEntity implements Seriali
     /**
      * 이메일 주소 <<emailAddr>>
      */
+    @Column(name = "email_addr")
     @ApiModelProperty(notes = "이메일 주소")
-    @Column(columnDefinition = "VARCHAR(50) COMMENT '이메일 주소'", nullable = false, length = 50)
     private String emailAddr;
     /**
      * 회원이름 <<memberName>>
