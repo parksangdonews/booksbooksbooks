@@ -2,22 +2,23 @@ package com.parksangdo.booksbooks.api.entity;
 
 import com.parksangdo.booksbooks.global.entity.GlobalDeletedDatetimeEntity;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.Length;
-
-import javax.persistence.Cacheable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.UUID;
+import javax.persistence.Cacheable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * <b>책 엔티티</b>
@@ -30,8 +31,7 @@ import java.util.UUID;
  */
 @Data
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EqualsAndHashCode(callSuper = false, of = "bookDetailId")
+@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @ToString(exclude = "bookDetailId")
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -43,6 +43,8 @@ public class BooksDetailEntity extends GlobalDeletedDatetimeEntity implements Se
      * 책 ID <<booksDetailId>> UUID2
      */
     @Id
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid")
     @Type(type = "uuid-char")
     @Column(columnDefinition = "CHAR(36) COMMENT '책 ID'", updatable = false, nullable = false, unique = true, length = 36)
     @ApiModelProperty(notes = "책 ID")
@@ -130,8 +132,6 @@ public class BooksDetailEntity extends GlobalDeletedDatetimeEntity implements Se
     @ApiModelProperty(notes = "정보입력일시")
     @Column(columnDefinition = "TIMESTAMP COMMENT '정보입력일시'")
     private ZonedDateTime lastBuildDate;
-
-
 
 
 }
