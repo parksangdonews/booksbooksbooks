@@ -16,7 +16,7 @@
 
 ## ERD
 
-![DB Tables](/ext-resources/books_erd.jpg)
+![DB Tables](./ext-resources/books_erd.jpg)
 
 
 
