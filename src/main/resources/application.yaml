@@ -24,3 +24,4 @@ api:
 logging:
   level:
     root: debug
+    org.springframework : debug

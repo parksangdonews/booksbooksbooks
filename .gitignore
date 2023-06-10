@@ -152,7 +152,7 @@ buildNumber.properties
 ##############################
 ## Gradle
 ##############################
-bin/
+#bin/
 build/
 .gradle
 .gradletasknamecache
@@ -173,7 +173,7 @@ out/
 ## Eclipse
 ##############################
 .settings/
-bin/
+#bin/
 tmp/
 .metadata
 .classpath
@@ -240,7 +240,7 @@ build/
 .settings
 .springBeans
 .sts4-cache
-bin/
+#bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 

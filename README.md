@@ -16,9 +16,15 @@
 -
 
 
+## 실행옵션
+```java
+vm option..
+        
+x-Djava.library.path=/opt/homebrew/opt/tomcat-native/lib
 
+        (tomcat-native 설치 후 경로 확인 필요)
 
-
+```
 
 
 
