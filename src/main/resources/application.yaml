@@ -1,7 +1,7 @@
 spring:
   devtools:
     livereload:
-      enabled: true
+      enabled: false
   thymeleaf:
     cache: false
   # db h2
@@ -27,7 +27,12 @@ api:
   pw: cluz_oS884
 logging:
   level:
-    root: debug
     org.springframework : warn
+    org.springframework.boot.autoconfigure : warn
+    sql: debug
+    web: debug
 server:
   port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
