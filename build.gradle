@@ -1,12 +1,13 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.12'
-    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '2.7.13-SNAPSHOT'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 group = 'com.parksangdo'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 configurations {
     compileOnly {
@@ -15,10 +16,10 @@ configurations {
 }
 
 repositories {
+
     mavenCentral()
     google()
     jcenter()
-
 
     maven { url 'https://repo.spring.io/milestone' }
     maven { url 'https://repo.spring.io/snapshot' }
@@ -27,67 +28,79 @@ repositories {
     maven { url "http://jump-pilot.sourceforge.net/repository"
         allowInsecureProtocol  = true
     }
+
 }
 
-
+ext['tomcat.version'] = '9.0.74'
 
 
 dependencies {
  
 
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+        
+    }
 
 
-    implementation 'org.springframework.boot:spring-boot-starter-jersey:2.7.12'
+    implementation 'org.springframework.boot:spring-boot-starter-jersey'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.data:spring-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.7.12'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
+
     //implementation 'nz.net.ultraq.web.thymeleaf:thymeleaf-layout-dialect:3.2.0'
 
     compileOnly 'org.projectlombok:lombok'
 
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5
     implementation 'org.apache.httpcomponents.client5:httpclient5:5.0.3'
 
 
-    implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.12'
 
     // DB
     runtimeOnly 'com.h2database:h2'
-    //implementation 'org.springframework.data:spring-data-jpa:2.4.3'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.hibernate:hibernate-jcache'
 
+    // mysql
+    //runtimeOnly 'mysql:mysql-connector-java'
+
+
     // swagger
-    implementation "io.springfox:springfox-boot-starter:3.0.0"
-    implementation("io.swagger:swagger-annotations:1.5.21")
-    implementation("io.swagger:swagger-models:1.5.21")
+    // Swagger 3.0.0
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+ 
+    implementation "io.swagger:swagger-annotations"
+    implementation "io.swagger:swagger-models"
 
     // ===============================================
     // Json
     // ===============================================
     // jackson
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.14.3'
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.3'
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.14.3'
-
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hibernate5', version: '2.14.3'
+    implementation 'com.fasterxml.jackson.core:jackson-core'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
 
     // java.time.ZonedDateTime 의 처리를 위해 필요
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.14.3'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.4.2'
     implementation group: 'org.json', name: 'json', version: '20220320'
 
-    
-    // https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime
-    implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '3.1.0-M1'
 
-    
+    implementation 'org.glassfish.jaxb:jaxb-core:3.0.2'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.2'
 
 
 }

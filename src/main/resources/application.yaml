@@ -1,4 +1,7 @@
 spring:
+  devtools:
+    livereload:
+      enabled: true
   thymeleaf:
     cache: false
   # db h2
@@ -25,8 +28,6 @@ api:
 logging:
   level:
     root: debug
-    org.springframework : debug
+    org.springframework : warn
 server:
   port: 8080
-  servlet:
-    context-path: /
